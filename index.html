@@ -24,20 +24,22 @@
     .grid{display:grid;gap:16px}
     @media(min-width:900px){.grid-3{grid-template-columns:repeat(3,1fr)}}
 
-    /* HERO BAR: left = sign, right = headshot */
+    /* HERO BAR: left = sign, right = headshot (fills to bottom) */
     .hero{background:var(--navy)}
     .hero-grid{display:grid;grid-template-columns:1fr 1fr;min-height:520px}
     .hero-col{position:relative;overflow:hidden}
-    .hero-col img{position:absolute;inset:0;width:100%;height:100%}
-    .hero-col.left img{object-fit:contain}
-    /* Zoomed OUT more + show top of head */
-    .hero-col.right img{object-fit:cover;object-position:center top;transform:scale(0.77);transform-origin:center top}
+    .hero-col.left img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+    /* Right side uses background image so it always reaches bottom */
+    .hero-col.right{
+      background-image:url('headshot.jpg');
+      background-repeat:no-repeat;
+      background-position:center top;     /* show more of the top of your head */
+      background-size:cover;              /* always fills to the bottom of the blue bar */
+    }
 
     @media(max-width:900px){
       .hero-grid{grid-template-columns:1fr;min-height:auto}
       .hero-col{min-height:340px}
-      .hero-col.left img{object-fit:contain}
-      .hero-col.right img{object-fit:cover;object-position:center top;transform:scale(0.77)}
     }
 
     /* INTRO (centered, below hero) */
@@ -63,9 +65,7 @@
       <div class="hero-col left" aria-label="Campaign sign logo">
         <img src="logo.png" alt="Den Beste for Sioux City campaign sign logo">
       </div>
-      <div class="hero-col right" aria-label="Candidate headshot">
-        <img src="headshot.jpg" alt="John S. Den Beste headshot">
-      </div>
+      <div class="hero-col right" aria-label="Candidate headshot"></div>
     </div>
   </section>
 
@@ -106,4 +106,31 @@
       <div>
         <h2>Meet John</h2>
         <p style="margin:8px 0 0;color:#475569">John brings a diverse background in finance, public service, and civic leadership. A graduate of Morningside University with a degree in Political Science, he works as a financial advisor helping individuals and families with tailored advice and solutions to achieve their financial goals and dreams. John plans to bring the same skills and passion to city budgeting.</p>
-        <p style="margin:10px 0 0;color:#475569">John proudly serves his community in law enforcement as a Reserve Deputy with the Woodbury County Sheriff’s Office. He is an active member of the Siouxland Chambe
+        <p style="margin:10px 0 0;color:#475569">John proudly serves his community in law enforcement as a Reserve Deputy with the Woodbury County Sheriff’s Office. He is an active member of the Siouxland Chamber of Commerce Government Relations Committee, including the past two years as chair, where he has been a strong voice for Sioux City at the state and federal levels.</p>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:36px">
+      <div class="grid grid-3">
+        <a class="card" href="mailto:john@DenBesteforSiouxCity.com" style="text-decoration:none;color:inherit">
+          <strong>john@DenBesteforSiouxCity.com</strong>
+          <p style="margin:8px 0 0;color:#475569">Email us to volunteer or request a yard sign.</p>
+        </a>
+        <div class="card">
+          <strong>Authorized by the candidate committee.</strong>
+          <p style="margin:8px 0 0;color:#475569">Paid for by Den Beste for Sioux City</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>© <span id="year"></span> Den Beste for Sioux City</div>
+      <div>Paid for by Den Beste for Sioux City</div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
