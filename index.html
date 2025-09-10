@@ -11,10 +11,17 @@
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--ivory);color:#111}
 
     /* NAV: only links + Donate (right) */
-    .nav{position:sticky;top:0;background:var(--navy);color:var(--ivory);padding:14px 20px;display:flex;justify-content:flex-end;align-items:center;gap:16px;z-index:10}
+    .nav{
+      position:sticky;top:0;background:var(--navy);color:var(--ivory);
+      padding:14px 20px;display:flex;justify-content:flex-end;align-items:center;
+      gap:16px;z-index:10
+    }
     .nav a{color:var(--ivory);text-decoration:none;font-weight:600}
     .nav .links a{margin-right:16px}
-    .btn{border:2px solid var(--lime);background:var(--lime);color:var(--navy);padding:10px 16px;border-radius:16px;font-weight:700;text-decoration:none;display:inline-block}
+    .btn{
+      border:2px solid var(--lime);background:var(--lime);color:var(--navy);
+      padding:10px 16px;border-radius:16px;font-weight:700;text-decoration:none;display:inline-block
+    }
 
     .container{max-width:1060px;margin:0 auto}
     h1{font-size:38px;margin:0}
@@ -24,17 +31,22 @@
     .grid{display:grid;gap:16px}
     @media(min-width:900px){.grid-3{grid-template-columns:repeat(3,1fr)}}
 
-    /* HERO BAR: left = sign, right = headshot (fills to bottom) */
+    /* HERO BAR: left = sign, right = headshot (fills to bottom, very zoomed out) */
     .hero{background:var(--navy)}
     .hero-grid{display:grid;grid-template-columns:1fr 1fr;min-height:520px}
     .hero-col{position:relative;overflow:hidden}
-    .hero-col.left img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
-    /* Right side uses background image so it always reaches bottom */
+
+    /* LEFT: sign logo scales to fit */
+    .hero-col.left img{
+      position:absolute;inset:0;width:100%;height:100%;object-fit:contain
+    }
+
+    /* RIGHT: headshot as background so it always hits the bottom, zoomed way out */
     .hero-col.right{
       background-image:url('headshot.jpg');
       background-repeat:no-repeat;
-      background-position:center top;     /* show more of the top of your head */
-      background-size:cover;              /* always fills to the bottom of the blue bar */
+      background-position:center top;  /* keep the top of your head visible */
+      background-size:auto 100%;       /* fit height exactly (very zoomed out) */
     }
 
     @media(max-width:900px){
@@ -59,8 +71,8 @@
     <a class="btn" href="https://givebutter.com/denbeste">Donate</a>
   </header>
 
-  <!-- HERO BAR -->
-  <section class="hero">
+  <!-- HERO BAR (blue) -->
+  <section class="hero" aria-label="Campaign hero">
     <div class="hero-grid">
       <div class="hero-col left" aria-label="Campaign sign logo">
         <img src="logo.png" alt="Den Beste for Sioux City campaign sign logo">
@@ -69,7 +81,7 @@
     </div>
   </section>
 
-  <!-- INTRO (under blue bar) -->
+  <!-- INTRO (below the blue bar) -->
   <section class="intro">
     <div class="container">
       <h1>Building a Bright Future for <span style="color:var(--navy)">Sioux City</span></h1>
