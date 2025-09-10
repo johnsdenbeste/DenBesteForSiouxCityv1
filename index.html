@@ -8,18 +8,37 @@
   <style>
     :root{--navy:#162d53;--lime:#dbe11f;--ivory:#fffbfd;--slate:#475569}
     *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--ivory);color:#111}
-    .nav{position:sticky;top:0;background:var(--navy);color:var(--ivory);padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+    .nav{position:sticky;top:0;background:var(--navy);color:var(--ivory);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;z-index:10}
     .nav a{color:var(--ivory);text-decoration:none;margin-right:16px;font-weight:600}
     .btn{border:2px solid var(--lime);background:var(--lime);color:var(--navy);padding:10px 16px;border-radius:16px;font-weight:700;text-decoration:none;display:inline-block}
     .pill{display:inline-block;background:transparent;border:2px solid var(--ivory);color:var(--ivory);padding:10px 16px;border-radius:16px;font-weight:700;text-decoration:none;margin-left:8px}
-    .hero{background:var(--navy);color:var(--ivory);padding:56px 20px}
     .container{max-width:1060px;margin:0 auto}
     h1{font-size:38px;margin:0}
     h2{margin:0 0 8px}
     .card{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
     footer{border-top:1px solid #e5e7eb;background:var(--ivory);padding:20px 0;color:var(--slate)}
     .grid{display:grid;gap:16px}
-    @media(min-width:900px){.grid-3{grid-template-columns:repeat(3,1fr)}.grid-2{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:900px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+
+    /* HERO SPLIT */
+    .hero-wrap{background:var(--navy)}
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;min-height:520px}
+    .hero-left,.hero-right{position:relative}
+    .hero-left img,.hero-right img{position:absolute;inset:0;width:100%;height:100%}
+    .hero-left img{object-fit:contain}
+    .hero-right img{object-fit:cover}
+    .hero-overlay{position:absolute;inset:auto 0 0 0;padding:28px 20px;color:var(--ivory);background:linear-gradient(180deg, rgba(22,45,83,0) 0%, rgba(22,45,83,.65) 40%, rgba(22,45,83,.85) 75%, rgba(22,45,83,1) 100%);}
+    .hero-overlay .content{max-width:640px;margin:0 auto;padding:0 10px}
+    .hero-actions{margin-top:14px}
+    .hero-actions .btn{margin-right:8px}
+    @media(max-width:900px){
+      .hero-grid{grid-template-columns:1fr;min-height:auto}
+      .hero-left img{object-fit:contain;max-height:260px}
+      .hero-right{min-height:360px}
+      .hero-overlay{position:relative;background:transparent;padding:20px}
+      .pill{border-color:var(--navy);color:var(--navy)}
+    }
+
     .disclaimer{display:flex;gap:8px;align-items:center;font-size:12px;margin-top:12px;color:var(--ivory)}
     .logo{height:34px;border-radius:6px}
   </style>
@@ -34,91 +53,16 @@
       <a href="#priorities">Priorities</a>
       <a href="#meet">Meet John</a>
       <a href="#contact">Contact</a>
-      <a class="btn" href="#" id="donateBtn">Donate</a>
+      <a class="btn" href="https://givebutter.com/denbeste">Donate</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <div class="container">
-      <h1>Building a Bright Future for <span style="color:var(--lime)">Sioux City</span></h1>
-      <p style="max-width:620px;margin:14px 0 0">Focused on growth, opportunity, and our future — with fiscal responsibility, safe neighborhoods, and smart development.</p>
-      <div style="margin-top:16px">
-        <a class="btn" href="#" id="donateBtn2">Donate</a>
-        <a class="pill" href="#priorities">Explore Priorities →</a>
-      </div>
-      <div class="disclaimer">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#dbe11f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span>Paid for by Den Beste for Sioux City</span>
-      </div>
-    </div>
-  </section>
-
-  <main class="container" style="padding:40px 20px">
-    <section id="priorities">
-      <h2>Priorities</h2>
-      <p style="margin:0 0 16px;color:var(--slate)">Practical, accountable leadership focused on results.</p>
-      <div class="grid grid-3">
-        <div class="card">
-          <strong>Fiscal Responsibility</strong>
-          <p style="margin:8px 0 0;color:var(--slate)">Protect taxpayers and insist on transparency in budgeting and major projects.</p>
-        </div>
-        <div class="card">
-          <strong>Safe, Strong Neighborhoods</strong>
-          <p style="margin:8px 0 0;color:var(--slate)">Support first responders and revitalize neighborhoods with common-sense policies.</p>
-        </div>
-        <div class="card">
-          <strong>Smart Growth & Jobs</strong>
-          <p style="margin:8px 0 0;color:var(--slate)">Cut red tape, streamline permitting, and partner with local businesses to create jobs.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="meet" style="margin-top:36px">
-      <div class="grid grid-2">
-        <div>
-          <h2>Meet John</h2>
-          <p style="margin:8px 0 0;color:var(--slate)">John S. Den Beste is a financial professional, reserve deputy, and community leader who has served Sioux City through the Chamber of Commerce Government Relations Committee.</p>
-          <ul style="margin:10px 0 0 18px;color:var(--slate)">
-            <li>Chair, Siouxland Chamber Government Relations Committee</li>
-            <li>Background in finance & public safety</li>
-            <li>Husband and father of two young boys</li>
-          </ul>
-        </div>
-        <div class="card" style="min-height:220px;display:flex;align-items:center;justify-content:center;color:var(--slate)">Family Photo (placeholder)</div>
-      </div>
-    </section>
-
-    <section id="contact" style="margin-top:36px">
-      <div class="grid grid-3">
-        <a class="card" href="mailto:contact@DenBesteForSiouxCity.com" style="text-decoration:none;color:inherit">
-          <strong>contact@DenBesteForSiouxCity.com</strong>
-          <p style="margin:8px 0 0;color:var(--slate)">Email us to volunteer or request a yard sign.</p>
-        </a>
-        <a class="card" id="donateCard" href="#" style="text-decoration:none;color:inherit">
-          <strong>Donate</strong>
-          <p style="margin:8px 0 0;color:var(--slate)">Your support helps us reach voters and share our message.</p>
-        </a>
-        <div class="card">
-          <strong>Authorized by the candidate committee.</strong>
-          <p style="margin:8px 0 0;color:var(--slate)">Paid for by Den Beste for Sioux City</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
-      <div>© <span id="year"></span> Den Beste for Sioux City</div>
-      <div>Paid for by Den Beste for Sioux City</div>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    var donateUrl = "#"; // TODO: replace with your GiveButter link
-    document.getElementById('donateBtn').href = donateUrl;
-    document.getElementById('donateBtn2').href = donateUrl;
-    document.getElementById('donateCard').href = donateUrl;
-  </script>
-</body>
-</html>
+  <!-- HERO: left = sign logo fills; right = headshot fills; text overlays left -->
+  <section class="hero-wrap">
+    <div class="hero-grid">
+      <div class="hero-left" aria-label="Campaign sign logo image">
+        <img src="logo.png" alt="Den Beste for Sioux City campaign sign logo">
+        <div class="hero-overlay">
+          <div class="content">
+            <h1>Building a Bright Future for <span style="color:var(--lime)">Sioux City</span></h1>
+            <p style="max-width:640px;margin:12px 0 0">Focus
